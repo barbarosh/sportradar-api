@@ -53,7 +53,7 @@ module Sportradar
         detect_game_type(game_id)
         response = get request_url("games/#{ game_id }/boxscore")
         if response.success? && response["game"] # mostly done, just missing play statistics
-          Sportradar::Api::Nfl::Game.new response["game"]
+          Sportradar::Api::Nfl::Game.new response["game"], response
         else
           response
         end
@@ -63,7 +63,7 @@ module Sportradar
         detect_game_type(game_id)
         response = get request_url("games/#{ game_id }/roster")
         if response.success? && response["game"]
-          Sportradar::Api::Nfl::Game.new response["game"]
+          Sportradar::Api::Nfl::Game.new response["game"], response
         else
           response
         end
@@ -73,7 +73,7 @@ module Sportradar
         detect_game_type(game_id)
         response = get request_url("games/#{ game_id }/statistics")
         if response.success? && response["game"]
-          Sportradar::Api::Nfl::Game.new response["game"]
+          Sportradar::Api::Nfl::Game.new response["game"], response
         else
           response
         end
@@ -84,7 +84,7 @@ module Sportradar
         detect_game_type(game_id)
         response = get request_url("games/#{ game_id }/pbp")
         if response.success? && response["game"]
-          Sportradar::Api::Nfl::Game.new response["game"]
+          Sportradar::Api::Nfl::Game.new response["game"], response
         else
           response
         end

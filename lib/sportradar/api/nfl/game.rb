@@ -1,9 +1,10 @@
 module Sportradar
   module Api
     class Nfl::Game < Data
-      attr_accessor :response, :id, :status, :reference, :number, :scheduled, :entry_mode, :venue, :home, :away, :broadcast, :number, :attendance, :utc_offset, :weather, :clock, :quarter, :summary, :situation, :last_event, :scoring, :scoring_drives, :quarters, :stats, :week, :season, :overtime
+      attr_accessor :raw_response, :response, :id, :status, :reference, :number, :scheduled, :entry_mode, :venue, :home, :away, :broadcast, :number, :attendance, :utc_offset, :weather, :clock, :quarter, :summary, :situation, :last_event, :scoring, :scoring_drives, :quarters, :stats, :week, :season, :overtime
 
-      def initialize(data)
+      def initialize(data, raw_response = nil)
+        @raw_response = raw_response
         @response = data
         @id = data["id"]
 
