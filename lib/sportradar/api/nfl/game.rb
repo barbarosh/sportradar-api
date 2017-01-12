@@ -103,7 +103,7 @@ module Sportradar
       end
 
       def status_description
-        status_description = {
+        status_descriptions = {
            "scheduled" => "The game is currently scheduled to occur.",
            "inprogress" => "The game is currently in progress.",
            "halftime" => "The game is currently at the half.",

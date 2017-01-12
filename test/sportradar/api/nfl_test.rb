@@ -6,6 +6,10 @@ class Sportradar::Api::NflTest < Minitest::Test
     "f45b4a31-b009-4039-8394-42efbc6d5532"
   end
 
+  def fake_game_id
+    'fakefa-fake-fake-fake-fakefake'
+  end
+
   def past_game_id
     "0141a0a5-13e5-4b28-b19f-0c3923aaef6e"
   end

@@ -14,19 +14,23 @@ module Sportradar
     end
 
     class Config
-      attr_accessor :api_timeout, :use_ssl, :format
+      SPORTRADAR_API_HOST = 'api.sportradar.us'.freeze
+
+      attr_accessor :api_timeout, :use_ssl, :format, :api_host, :fake_api_host
 
       def initialize
         @api_key = ENV['API_KEY']
-        @api_timeout = ENV.fetch('SPORTRADAR_API_TIMEOUT', 15 )
+        @api_host = ENV.fetch('SPORTRADAR_API_HOST', SPORTRADAR_API_HOST)
+        @fake_api_host = ENV.fetch('SPORTRADAR_FAKE_API_HOST', SPORTRADAR_API_HOST)
+        @api_timeout = ENV.fetch('SPORTRADAR_API_TIMEOUT', 15)
         @use_ssl = ENV.fetch('SPORTRADAR_API_USE_SSL', true)
-        @format = ENV.fetch("SPORTRADAR_API_FORMAT", :xml).to_s
+        @format = ENV.fetch('SPORTRADAR_API_FORMAT', :xml).to_s
       end
 
       def reset
-        @api_timeout = ENV.fetch('SPORTRADAR_API_TIMEOUT', 15 )
+        @api_timeout = ENV.fetch('SPORTRADAR_API_TIMEOUT', 15)
         @use_ssl = ENV.fetch('SPORTRADAR_API_USE_SSL', true)
-        @format = ENV.fetch("SPORTRADAR_API_FORMAT", :xml).to_s
+        @format = ENV.fetch('SPORTRADAR_API_FORMAT', :xml).to_s
       end
     end
   end
