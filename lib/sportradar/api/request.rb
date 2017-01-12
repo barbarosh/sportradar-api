@@ -23,14 +23,21 @@ module Sportradar
       private
 
       def base_setup(path, options={})
-        @url = set_base(path, options[:is_fake_api])
+        @url = set_base(path, options[:is_fake])
         @url += format unless options[:format] == 'none'
         @headers = set_headers unless options[:format] == 'none'
         @timeout = options.delete(:api_timeout) || Sportradar::Api.config.api_timeout
       end
 
       def set_base(path, is_fake_api = false)
-        "#{!!Sportradar::Api.config.use_ssl ? 'https' : 'http'}://#{is_fake_api ? Sportradar::Api.config.fake_api_host : Sportradar::Api.config.api_host}#{path}"
+        if is_fake_api
+          is_ssl_protocol = !!Sportradar::Api.config.fake_use_ssl
+          host = Sportradar::Api.config.fake_api_host
+        else
+          is_ssl_protocol =!!Sportradar::Api.config.use_ssl
+          host = Sportradar::Api.config.api_host
+        end
+        "#{is_ssl_protocol ? 'https' : 'http'}://#{host}#{path}"
       end
 
       def date_path(date)
